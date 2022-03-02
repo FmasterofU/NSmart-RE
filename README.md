@@ -5,6 +5,8 @@ Reverse engineering NSmart API
 
 [APK online downloader - NSmart (latest)](https://apkcombo.com/apk-downloader/#package=buslogic.nsmartapp)
 
+[NSmart 4.6.apk](Nsmart_4.6.apk)
+
 
 ## Strings
 [All strings contained in APK](nsmart-strings.txt)
