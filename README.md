@@ -155,3 +155,17 @@ values/strings.xml:    <string name="company_api_key">4670f468049bbee2260</strin
 ```
 
 **The API key is 4670f468049bbee2260.**
+
+## Test
+
+Now we create a few test call in accordance to the call's in the decompiled java code shown previously from `buslogic.nsmartapp.api.CitiesExtendedApi.class` and `buslogic.nsmartapp.ui.SplashActivity.class`.
+
+```bash
+curl --location --request GET 'https://online.nsmart.rs/publicapi/v1/networkextended.php?action=get_cities_extended' --header 'X-Api-Authentication: 4670f468049bbee2260'
+```
+From the [response JSON](sample-response-cities-extended.json) we extract station information, for instance, the ID for the station "Narodnog Fronta - Šekspirova" is `6532`.
+Now we can form the Announcment API call for this station:
+```bash
+curl --location --request GET 'https://online.nsmart.rs/publicapi/v1/announcement/announcement.php?ibfm=TM00000&station_uid=6532' --header 'X-Api-Authentication: 4670f468049bbee2260'
+```
+The [JSON response](sample-response-announcment-6532.json), among other things, gives the exact current position for all busses that stop at the given bus station.
