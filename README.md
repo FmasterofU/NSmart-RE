@@ -107,3 +107,21 @@ public class SplashActivity extends Activity {
 ...
 }
 ```
+
+The line `this.companyApiKey = getString(2131820660);` represents an superclass (`android.app.Activity`) call to the application Context, where the parameter `2131820660` (hex 7F110074) is the resource ID of the API key located in the Application resources.
+Moreover, we can see that the same number is declared as a constant in the `buslogic.nsmartapp.R.class`:
+```java
+public final class R {
+...
+  public static final class string {
+    ...
+    public static final int company_api_key = 2131820660;
+    ...
+    public static final int company_url = 2131820664;
+    ...
+  }
+...
+}
+```
+These constant names can be a clue to the actual resource names of the sought after values (and, as it turns out, they are the same). 
+
