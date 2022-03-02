@@ -134,7 +134,7 @@ Tools:
 .\apktool_2.6.1.jar d '.\Nsmart_4.6.apk'
 ```
 
-We position ourselves to the `res` (resources) foler of the generated directory, and recursively search for the hex value of the company api key resource ID:
+We position ourselves to the `res` (resources) folder of the generated directory, and recursively search for the hex value of the company api key resource ID:
 ```bash
 grep -r 7f110074
 ```
@@ -142,7 +142,7 @@ And the result is:
 ```grep
 values/public.xml:    <public type="string" name="company_api_key" id="0x7f110074" />
 ```
-As we can see, the resource name is the same as the constant name in the previously show piece of code from the R.class 
+As we can see, the resource name is the same as the constant name in the previously show piece of code from the `R.class`.
 
 Now we again search for the api key value by its name `company_api_key`:
 ```bash
@@ -158,14 +158,19 @@ values/strings.xml:    <string name="company_api_key">4670f468049bbee2260</strin
 
 ## Test
 
-Now we create a few test call in accordance to the call's in the decompiled java code shown previously from `buslogic.nsmartapp.api.CitiesExtendedApi.class` and `buslogic.nsmartapp.ui.SplashActivity.class`.
+Now we create a few test calls in accordance with the decompiled java code shown previously, from `buslogic.nsmartapp.api.CitiesExtendedApi.class` and `buslogic.nsmartapp.ui.SplashActivity.class`.
 
 ```bash
 curl --location --request GET 'https://online.nsmart.rs/publicapi/v1/networkextended.php?action=get_cities_extended' --header 'X-Api-Authentication: 4670f468049bbee2260'
 ```
-From the [response JSON](sample-response-cities-extended.json) we extract station information, for instance, the ID for the station "Narodnog Fronta - Šekspirova" is `6532`.
+From the [response JSON](sample-response-cities-extended.json) we extract the station information. For instance, the ID for the station "Narodnog Fronta - Šekspirova" is `6532`.
 Now we can form the Announcment API call for this station:
 ```bash
 curl --location --request GET 'https://online.nsmart.rs/publicapi/v1/announcement/announcement.php?ibfm=TM00000&station_uid=6532' --header 'X-Api-Authentication: 4670f468049bbee2260'
 ```
-The [JSON response](sample-response-announcment-6532.json), among other things, gives the exact current position for all busses that stop at the given bus station.
+The [JSON response](sample-response-announcment-6532.json), among other things, gives us the exact current position for all busses that stop at the given bus station.
+
+## Contributors
+ - Nemanja Popović (Android Dev)
+ - Anja Ekres (the idea)
+ - Dejan Bogosavljev (Generalissimo)
